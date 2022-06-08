@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="./logo.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#000000" />
+		<meta
+			name="description"
+			content="Weather Progressive Web App using React"
+		/>
+		<link rel="apple-touch-icon" href="./logo.png" />
+		<link rel="manifest" href="./manifest.json" />
+
+		<title>Weather</title>
+	</head>
+	<body>
+		<noscript>You need to enable JavaScript to run this app.</noscript>
+		<div id="root"></div>
+		<script>
+			//serviceWorker helps to send push notifs and make changes to the page even when it is not used
+			//serviceWorker runs even after closing the webpage
+			if ("serviceWorker" in navigator) {
+				//checking is service worker is there
+				window.addEventListener("load", () => {
+					navigator.serviceWorker
+						.register("./serviceworker.js")
+						.then((reg) => console.log("Success: ", reg.scope)) //URL on which serviceWorker was installed
+						.catch((err) => console.log("Failure: ", err)); //Error
+				});
+			}
+		</script>
+	</body>
+</html>
